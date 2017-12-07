@@ -1,0 +1,100 @@
+<form novalidate [formGroup]="user">
+    <div class="jumbotron">
+        <div class="container container-fluid">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="label-control">
+                            <span>Search for GitHub User Name</span>
+                            <input type="text" id="userName" 
+                                placeholder="search user name" 
+                                formControlName="userName" 
+                                name="userName" 
+                                class="form-control"/>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" *ngIf="userDetailsResponse">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-responsive">
+                            <thead>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Company
+                                </th>
+                                <th>
+                                    Bio
+                                </th>
+                                <th>
+                                    Location
+                                </th>
+
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        {{ userDetailsResponse?.login }}
+                                    </td>
+
+                                    <td>
+                                        {{ userDetailsResponse?.company }}
+                                    </td>
+
+                                    <td>
+                                        {{ userDetailsResponse?.bio }}
+                                    </td>
+
+                                    <td>
+                                        {{ userDetailsResponse?.location }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group" *ngIf="userSearchResponse?.length > 0">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-responsive">
+                            <thead>
+                                <th>
+                                    Repo Name
+                                </th>
+                                <th>
+                                    Language
+                                </th>
+                                <th>Forks Count</th>
+                                <th>Git Url</th>
+                            </thead>
+
+                            <tbody>
+                                <tr *ngFor="let user of userSearchResponse">
+                                    <td>
+                                        {{ user?.name}}
+                                    </td>
+                                    <td>
+                                        {{ user?.language }}
+
+                                    </td>
+                                    <td>
+                                        {{user?.forks_count}}
+                                    </td>
+                                    <td>{{ user?.git_url }}</td>
+
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
